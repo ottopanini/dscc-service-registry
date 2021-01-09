@@ -19,7 +19,7 @@ public class ServiceRegistry implements Watcher {
     }
 
     public void registerToCluster(String metadata) throws KeeperException, InterruptedException {
-        currentZNode = zooKeeper.create(REGISTRY_ZNODE + "\n", metadata.getBytes(),
+        currentZNode = zooKeeper.create(REGISTRY_ZNODE + "/", metadata.getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL);
 
