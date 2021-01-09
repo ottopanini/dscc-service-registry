@@ -44,9 +44,15 @@ public class ServiceRegistry implements Watcher {
         return allServiceAdresses;
     }
 
-    public void unregisterFromCluster() throws KeeperException, InterruptedException {
-        if (currentZNode != null && zooKeeper.exists(currentZNode, false) != null) {
-            zooKeeper.delete(currentZNode, -1);
+    public void unregisterFromCluster() {
+        try {
+            if (currentZNode != null && zooKeeper.exists(currentZNode, false) != null) {
+                zooKeeper.delete(currentZNode, -1);
+            }
+        } catch (KeeperException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
